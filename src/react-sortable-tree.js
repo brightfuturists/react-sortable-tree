@@ -776,6 +776,7 @@ ReactSortableTree.propTypes = {
   // [{title: 'main', subtitle: 'sub'}, { title: 'value2', expanded: true, children: [{ title: 'value3') }] }]
   // `title` is the primary label for the node
   // `subtitle` is a secondary label for the node
+  // `val` is an auxiliary data element for the node
   // `expanded` shows children of the node if true, or hides them if false. Defaults to false.
   // `children` is an array of child nodes belonging to the node.
   treeData: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -809,7 +810,7 @@ ReactSortableTree.propTypes = {
 
   // The method used to search nodes.
   // Defaults to a function that uses the `searchQuery` string to search for nodes with
-  // matching `title` or `subtitle` values.
+  // matching `title` or `subtitle` or `val` values.
   // NOTE: Changing `searchMethod` will not update the search, but changing the `searchQuery` will.
   searchMethod: PropTypes.func,
 

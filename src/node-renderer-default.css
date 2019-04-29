@@ -264,6 +264,12 @@
   line-height: 1;
 }
 
+.rst__rowVal {
+  font-size: 70%;
+  line-height: 1;
+  color: red;
+}
+
 .rst__collapseButton,
 .rst__expandButton {
   appearance: none;

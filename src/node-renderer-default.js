@@ -17,6 +17,7 @@ class NodeRendererDefault extends Component {
       node,
       title,
       subtitle,
+      val,
       draggedNode,
       path,
       treeIndex,
@@ -34,6 +35,7 @@ class NodeRendererDefault extends Component {
     } = this.props;
     const nodeTitle = title || node.title;
     const nodeSubtitle = subtitle || node.subtitle;
+    const nodeVal = val || node.val;
     const rowDirectionClass = rowDirection === 'rtl' ? 'rst__rtl' : null;
 
     let handle;
@@ -159,6 +161,18 @@ class NodeRendererDefault extends Component {
                         : nodeSubtitle}
                     </span>
                   )}
+
+                  {nodeVal && (
+                    <span className="rst__rowVal">
+                      {typeof nodeVal === 'function'
+                        ? nodeVal({
+                            node,
+                            path,
+                            treeIndex,
+                          })
+                        : nodeVal}
+                    </span>
+                  )}
                 </div>
 
                 <div className="rst__rowToolbar">
@@ -193,6 +207,7 @@ NodeRendererDefault.defaultProps = {
   canDrop: false,
   title: null,
   subtitle: null,
+  val: null,
   rowDirection: 'ltr',
 };
 
@@ -200,6 +215,7 @@ NodeRendererDefault.propTypes = {
   node: PropTypes.shape({}).isRequired,
   title: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   subtitle: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  val: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   path: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ).isRequired,
